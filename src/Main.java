@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,12 +11,21 @@ public class Main {
     	int moyenne = StatsArene.moyenne(scores);
     	int max = StatsArene.max(scores);
     	int min = StatsArene.min(scores);
-    	int trierDecroissant = StatsArene.trierDecroissant(scores);
+    	int[] trierDecroissant = StatsArene.trierDecroissant(scores);
     	
     	System.out.println("La moyenne est : " + moyenne);
     	System.out.println("Le max est : " + max);
     	System.out.println("Le minimum est : " + min);
-    	System.out.println(trierDecroissant);
+    	System.out.println("Décroissant : " + Arrays.toString(trierDecroissant));
+    	/*Combattant c = new Combattant("Jax", 100, 0, 18, 6);
+    	if (c.estKO()) {
+            System.out.println("Jax est KO");
+        }
+
+        System.out.println(c);*/
+    	
+    	
+    	
 
         Scanner scanner = new Scanner(System.in);
 
@@ -37,7 +47,7 @@ public class Main {
                 int faces = 0;
 
                 do {
-                    System.out.print("?Nomre de faces ");
+                    System.out.print("Nombre de faces ");
                     faces = scanner.nextInt();
 
                     if (faces < 4 || faces > 20) {

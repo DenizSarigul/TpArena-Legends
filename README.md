@@ -1,0 +1,1 @@
+do while permet de faire qu'une seule boucle
