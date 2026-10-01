@@ -48,15 +48,16 @@ public class StatsArene {
                     int temp = t[i];
                     t[i] = t[j];
                     t[j] = temp;
-                    compteur ++;
-                    echanges = true;
                     
+                    echanges = true;
+                    compteur ++;
                     
                 }
             }
         }
 		return t;
 	}
+	
 	
 
 		

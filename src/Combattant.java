@@ -10,7 +10,7 @@ public abstract class Combattant {
 	public Combattant() {
 		
 	}
-	public Combattant(String unNom, int unPvMax, int unPv, int uneAttaque, int uneDefense) {
+	public Combattant(String unNom, int unPv, int unPvMax, int uneAttaque, int uneDefense) {
 
 	    if (unNom == null || unNom.length() < 3 || unNom.length() > 15) {
 	        throw new IllegalArgumentException("Le nom doit être entre 3 et 15 caractères.");
@@ -98,10 +98,19 @@ public abstract class Combattant {
 	public boolean estKO() {
 	    return pv == 0;
 	}
+	protected void subirDegatsBruts(int d) {
+
+	    pv = pv - d;
+
+	    if (pv < 0) {
+	        pv = 0;
+	    }
+	}
+	public abstract String getClasse();
 	
 	 @Override
 	    public String toString() {
-	        return nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
+		   return getClasse() + " " + nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
 	    }
 	 public abstract int attaquer(Combattant cible);
 	

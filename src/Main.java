@@ -17,12 +17,20 @@ public class Main {
     	System.out.println("Le max est : " + max);
     	System.out.println("Le minimum est : " + min);
     	System.out.println("Décroissant : " + Arrays.toString(trierDecroissant));
-    	/*Combattant c = new Combattant("Jax", 100, 0, 18, 6);
+    	
+    	
+    	Combattant c = new Guerrier("Jax", 50, 100, 18, 6, 40);
+    	Combattant c1 = new Mage("Morgana", 50, 100, 18, 6,50);
+    	
     	if (c.estKO()) {
             System.out.println("Jax est KO");
         }
+        
+        
 
-        System.out.println(c);*/
+        System.out.println(c);
+        System.out.println(c1);
+        
     	
     	
     	
@@ -94,7 +102,7 @@ public class Main {
 
                         int tirage = random2.nextInt(100);
 
-                        if (tirage < 15) {
+                        if (tirage <= 15) {
 
                             critiques++;
                             serie++;
