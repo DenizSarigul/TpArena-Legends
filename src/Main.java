@@ -19,8 +19,9 @@ public class Main {
     	System.out.println("Décroissant : " + Arrays.toString(trierDecroissant));
     	
     	
-    	Combattant c = new Guerrier("Jax", 50, 100, 18, 6, 40);
-    	Combattant c1 = new Mage("Morgana", 50, 100, 18, 6,50);
+    	Combattant c = new Guerrier("Jax", 100, 50, 18, 6);
+    	Combattant c1 = new Mage("Morgana", 100, 50, 18, 6);
+    	Combattant c2 = new Voleur("Talon",100, 50, 16, 4, 30);
     	
     	if (c.estKO()) {
             System.out.println("Jax est KO");
@@ -30,6 +31,7 @@ public class Main {
 
         System.out.println(c);
         System.out.println(c1);
+        System.out.println(c2);
         
     	
     	

@@ -1,37 +1,31 @@
 
 public class Guerrier extends Combattant {
-	private int rage = 0;
-	
-	public Guerrier() {
-		
-	}
-	public Guerrier(String unNom,int unPv,int unPvMax,int uneAttaque,int uneDefense,int uneRage) {
-		super(unNom,unPv,unPvMax,uneAttaque,uneDefense);
-		this.rage = uneRage;
-				
-		
-	}
-	public int attaquer(Combattant cible) {
 
-	    rage += 20;
+    private int rage = 0;
 
-	    int attaque = getAttaque();
+    public Guerrier(String nom, int pvMax, int pv, int attaque, int defense) {
+        super(nom, pvMax, pv, attaque, defense);
+    }
 
-	    if (rage == 100) {
-	        attaque = getAttaque() * 2;
-	        rage = 0;
-	    }
+    @Override
+    public int attaquer(Combattant cible) {
 
-	    cible.subirDegats(attaque);
+        rage += 20;
 
-	    return attaque;
-	}
-	@Override
-	public String getClasse() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+        int degats = getAttaque();
 
+        if (rage >= 100) {
+            degats = getAttaque() * 2;
+            rage = 0;
+        }
+
+        cible.subirDegats(degats);
+
+        return degats;
+    }
+
+    @Override
+    public String getClasse() {
+        return "Guerrier";
+    }
 }

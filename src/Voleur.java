@@ -1,49 +1,49 @@
+
 import java.util.Random;
 
 public class Voleur extends Combattant {
-	private double esquive;
-	
-	public Voleur() {
-		
-	}
-	public Voleur(String unNom,int unPv,int unPvMax,int uneAttaque,int uneDefense,double uneEsquive) {
-		super(unNom,unPv,unPvMax,uneAttaque,uneDefense);
-		this.esquive = uneEsquive;
-				
-		
-	}
-	public int attaquer(Combattant cible) {
 
-	    Random random = new Random();
+    private int esquive;
+    private Random random = new Random();
 
-	    int degats = getAttaque();
+    public Voleur(String nom, int pvMax, int pv, int attaque, int defense, int esquive) {
+        super(nom, pvMax, pv, attaque, defense);
 
-	    if (random.nextInt(100) < 25) {
-	        degats = degats * 2;
-	    }
+        if (esquive < 10 || esquive > 40) {
+            throw new IllegalArgumentException(
+                "L'esquive doit être comprise entre 10 et 40."
+            );
+        }
 
-	    cible.subirDegats(degats);
+        this.esquive = esquive;
+    }
 
-	    return degats;
-	}
-	 @Override
-	    public void subirDegats(int d) {
+    @Override
+    public int attaquer(Combattant cible) {
 
-	        Random random = new Random();
+        int degats = getAttaque();
 
-	        if (random.nextInt(100) < esquive) {
-	            return;
-	        }
+        if (random.nextInt(100) < 25) {
+        	degats = degats * 2;
+        }
 
-	        super.subirDegats(d);;
-	    }
-	 @Override
-	 public String getClasse() {
-		// TODO Auto-generated method stub
-		return null;
-	 }
-	 
-	
-	
+        cible.subirDegats(degats);
 
+        return degats;
+    }
+
+    @Override
+    public void subirDegats(int degats) {
+
+        if (random.nextInt(100) < esquive) {
+            return;
+        }
+
+        super.subirDegats(degats);
+    }
+
+    @Override
+    public String getClasse() {
+        return "Voleur";
+    }
 }
