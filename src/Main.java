@@ -6,9 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
     	
-    	int [] scores = {42, 87, 15, 90, 63, 80, 5, 71, 90, 34, 50, 28};
+    	int [] scores = {42, 87, 15, 90, 63, 80, 5, 71, 72, 34, 50, 28};
     	
-    	int moyenne = StatsArene.moyenne(scores);
+    	double moyenne = StatsArene.moyenne(scores);
     	int max = StatsArene.max(scores);
     	int min = StatsArene.min(scores);
     	int[] trierDecroissant = StatsArene.trierDecroissant(scores);
@@ -19,22 +19,52 @@ public class Main {
     	System.out.println("Décroissant : " + Arrays.toString(trierDecroissant));
     	
     	
-    	Combattant c = new Guerrier("Jax", 100, 50, 18, 6);
-    	Combattant c1 = new Mage("Morgana", 100, 50, 18, 6);
-    	Combattant c2 = new Voleur("Talon",100, 50, 16, 4, 30);
-    	
-    	if (c.estKO()) {
-            System.out.println("Jax est KO");
-        }
-        
-        
+    	Tournoi tournoi = new Tournoi();
 
-        System.out.println(c);
-        System.out.println(c1);
-        System.out.println(c2);
-        
-    	
-    	
+    	// Création des 8 combattants
+    	Combattant c1 = new Guerrier("Jax", 100, 100, 18, 6);
+    	Combattant c2 = new Guerrier("Darius", 120, 120, 20, 8);
+
+    	Combattant c3 = new Mage("Morgana", 100, 100, 18, 6);
+    	Combattant c4 = new Mage("Merlin", 110, 110, 22, 5);
+
+    	Combattant c5 = new Voleur("Talon", 100, 100, 16, 4, 30);
+    	Combattant c6 = new Voleur("Ezio", 90, 90, 20, 5, 25);
+
+    	Combattant c7 = new Paladin("Uther", 150, 150, 15, 10);
+    	Combattant c8 = new Paladin("Arthur", 140, 140, 17, 8);
+
+    	// Inscription des combattants
+    	tournoi.inscrire(c1);
+    	tournoi.inscrire(c2);
+    	tournoi.inscrire(c3);
+    	tournoi.inscrire(c4);
+    	tournoi.inscrire(c5);
+    	tournoi.inscrire(c6);
+    	tournoi.inscrire(c7);
+    	tournoi.inscrire(c8);
+
+    	// Affichage des participants
+    	System.out.println("===== PARTICIPANTS =====");
+    	for (Combattant combattant : tournoi.getParticipants()) {
+    	    System.out.println(combattant);
+    	}
+
+    	// Lancement du tournoi
+    	Combattant champion = tournoi.lancer();
+
+    	// Affichage du classement
+    	System.out.println("\n===== CLASSEMENT =====");
+    	for (Combattant combattant : tournoi.classement()) {
+    	    System.out.println(
+    	        combattant.getNom() + " - "
+    	        + combattant.getVictoires() + " victoire(s)"
+    	    );
+    	}
+
+    	// Statistiques par classe
+    	System.out.println("\n===== STATISTIQUES PAR CLASSE =====");
+    	System.out.println(tournoi.statsParClasse());
     	
 
         Scanner scanner = new Scanner(System.in);
@@ -83,9 +113,9 @@ public class Main {
                     } 
                     else if(nombreSaisi < 100) {
                     	System.out.println("Bronze");
-                    }else if (nombreSaisi < 499) {
+                    }else if (nombreSaisi < 500) {
                     	System.out.println("Argent");
-                    }else if (nombreSaisi< 1499) {
+                    }else if (nombreSaisi< 1500) {
                     	System.out.println("Or");
                     } else {
                     	System.out.println("Légende");
@@ -104,7 +134,7 @@ public class Main {
 
                         int tirage = random2.nextInt(100);
 
-                        if (tirage <= 15) {
+                        if (tirage < 15) {
 
                             critiques++;
                             serie++;

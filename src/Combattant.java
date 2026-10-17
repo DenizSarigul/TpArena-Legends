@@ -9,6 +9,8 @@ public abstract class Combattant {
 
     private static int nbCombattants = 0;
     private int victoires = 0;
+    private int[] historiqueDegats = new int[5];
+    private int nombreDegats = 0;
 
     public Combattant(String nom, int pvMax, int pv, int attaque, int defense) {
 
@@ -84,7 +86,12 @@ public abstract class Combattant {
     }
 
     public void subirDegats(int degats) {
+    	
+    	if (estKO()) {
+    	    return;
+    	}
         int degatsReels = degats - defense;
+        int pvAvant = pv;
 
         if (degatsReels < 1) {
             degatsReels = 1;
@@ -95,14 +102,24 @@ public abstract class Combattant {
         if (pv < 0) {
             pv = 0;
         }
+        int degatsRecus = pvAvant - pv;
+        enregistrerDegats(degatsRecus);
     }
+    
 
     protected void subirDegatsBruts(int degats) {
+    	
+    	if (estKO()) {
+    	    return;
+    	}
         pv -= degats;
+        int pvAvant = pv;
 
         if (pv < 0) {
             pv = 0;
         }
+        int degatsRecus = pvAvant - pv;
+        enregistrerDegats(degatsRecus);
     }
 
     public void soigner(int soin) {
@@ -131,5 +148,17 @@ public abstract class Combattant {
             + " [" + pv + "/" + pvMax + " PV]"
             + " ATK " + attaque
             + " DEF " + defense;
+    }
+    private void enregistrerDegats(int degats) {
+        if (nombreDegats < historiqueDegats.length) {
+            historiqueDegats[nombreDegats] = degats;
+            nombreDegats++;
+        } else {
+            for (int i = 0; i < historiqueDegats.length - 1; i++) {
+                historiqueDegats[i] = historiqueDegats[i + 1];
+            }
+
+            historiqueDegats[historiqueDegats.length - 1] = degats;
+        }
     }
 }
